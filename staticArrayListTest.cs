@@ -6,6 +6,11 @@ namespace  ArrayListTest
         static void Main(string[] args){
             ArrayListActual<string> testData = new ArrayListActual<string>();
             testData.Add("Tom");
+            testData.Add("ToSmmy");
+            testData.Add("Paul");
+            testData.Add("Shan");
+            testData.Add("Tony");
+            testData.Add("Sunny");
         }
     }
     public class ArrayListActual <T>{
@@ -21,15 +26,15 @@ namespace  ArrayListTest
         }
 
         public void Add(T item){
-            actualArray[count] = item;
+            checkIfArrayFull();
+            actualArray[this.count] = item;
             Console.WriteLine(item);
             this.count++;
-            // my own implementation such that it tests whether the next iteration would be greater than
-            // the size of the array.
-            checkIfArrayFull();
+            
         }
         public void checkIfArrayFull(){
-            if(this.count > this.actualArray.Length){
+            // add + 1 since count begins from 1, to prevent exceptions.
+            if(this.count + 1 > this.actualArray.Length){
                 T[] newArray = new T[this.actualArray.Length*2];
                 // for copying the items of the actual Array into the new Array
                 Array.Copy(this.actualArray,newArray,this.count);
